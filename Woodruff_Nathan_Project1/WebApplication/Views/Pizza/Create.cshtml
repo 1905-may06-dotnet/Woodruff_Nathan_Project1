@@ -1,12 +1,10 @@
 ﻿@model WebApplication.Models.Pizzas
 
 @{
-    ViewData["Title"] = "View";
+    ViewData["Title"] = "Order";
 }
 
-<h1>View</h1>
-
-<h4>Pizzas</h4>
+<h1>Place an Order</h1>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -23,6 +21,7 @@
 
                 <span asp-validation-for="Size" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Crust" class="control-label"></label>
                 <span style="color:red">*</span>
@@ -34,6 +33,7 @@
 
                 <span asp-validation-for="Crust" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="Type" class="control-label"></label>
                 <span style="color:red">*</span>
@@ -45,8 +45,9 @@
 
                 <span asp-validation-for="Type" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Place Order" class="btn btn-primary" />
             </div>
         </form>
     </div>

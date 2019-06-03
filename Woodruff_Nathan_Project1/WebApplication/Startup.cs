@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace WebApplication
 {
@@ -30,6 +31,10 @@ namespace WebApplication
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // services.AddDistributedMemoryCache();
+
+
+
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -39,6 +44,7 @@ namespace WebApplication
             //One for each repository, possibly meaning one for each entity also
             services.AddScoped<IPizzaRepository, PizzaRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IOrdersRepository, OrderRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

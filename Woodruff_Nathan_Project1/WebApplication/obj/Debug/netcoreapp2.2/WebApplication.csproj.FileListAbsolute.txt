@@ -109,5 +109,8 @@ C:\Users\Nathan\GitHub\Woodruff_Nathan_Project1\Woodruff_Nathan_Project1\WebAppl
 C:\Users\Nathan\GitHub\Woodruff_Nathan_Project1\Woodruff_Nathan_Project1\WebApplication\obj\Debug\netcoreapp2.2\WebApplication.dll
 C:\Users\Nathan\GitHub\Woodruff_Nathan_Project1\Woodruff_Nathan_Project1\WebApplication\obj\Debug\netcoreapp2.2\WebApplication.pdb
 C:\Users\Nathan\GitHub\Woodruff_Nathan_Project1\Woodruff_Nathan_Project1\WebApplication\obj\Debug\netcoreapp2.2\Razor\Views\User\Index.g.cshtml.cs
-C:\Users\Nathan\GitHub\Woodruff_Nathan_Project1\Woodruff_Nathan_Project1\WebApplication\obj\Debug\netcoreapp2.2\Razor\Views\User\Create.g.cshtml.cs
-C:\Users\Nathan\GitHub\Woodruff_Nathan_Project1\Woodruff_Nathan_Project1\WebApplication\obj\Debug\netcoreapp2.2\Razor\Views\User\CreateTEST.g.cshtml.cs
+C:\Users\Nathan\GitHub\Woodruff_Nathan_Project1\Woodruff_Nathan_Project1\WebApplication\obj\Debug\netcoreapp2.2\Razor\Views\User\Test.g.cshtml.cs
+C:\Users\Nathan\GitHub\Woodruff_Nathan_Project1\Woodruff_Nathan_Project1\WebApplication\obj\Debug\netcoreapp2.2\Razor\Views\User\Details.g.cshtml.cs
+C:\Users\Nathan\GitHub\Woodruff_Nathan_Project1\Woodruff_Nathan_Project1\WebApplication\obj\Debug\netcoreapp2.2\Razor\Views\User\SignUp.g.cshtml.cs
+C:\Users\Nathan\GitHub\Woodruff_Nathan_Project1\Woodruff_Nathan_Project1\WebApplication\obj\Debug\netcoreapp2.2\Razor\Views\User\Login.g.cshtml.cs
+C:\Users\Nathan\GitHub\Woodruff_Nathan_Project1\Woodruff_Nathan_Project1\WebApplication\obj\Debug\netcoreapp2.2\Razor\Views\Order\Details.g.cshtml.cs

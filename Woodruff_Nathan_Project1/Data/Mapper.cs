@@ -15,7 +15,6 @@ namespace Data
             username = user.Username,
             password = user.Password,
             location = user.Location,
-
         };
 
         //refactor into long form to allow control flow
@@ -28,6 +27,7 @@ namespace Data
 
         public static Domain.Pizza Map(Db.Pizzas pizza) => new Domain.Pizza
         {
+            id = pizza.Id,
             size = pizza.Size,
             crust = pizza.Crust,
             type = pizza.Type,
@@ -36,6 +36,7 @@ namespace Data
 
         public static Db.Pizzas Map(Domain.Pizza pizza) => new Db.Pizzas
         {
+            Id = (int)pizza.id,
             Size = pizza.size,
             Crust = pizza.crust,
             Type = pizza.type,

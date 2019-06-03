@@ -1,11 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace WebApplication.Models
 {
     public enum Location
     {
         Dallas,
-        [Display(Name = "Ft. Worth")]
+        [Description("Ft. Worth")]
         FtWorth,
         Arlington,
         Irving,
@@ -18,11 +19,13 @@ namespace WebApplication.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "Username is required")]
-        [StringLength(50, ErrorMessage = "Username can be a maximum of 50 characters", MinimumLength = 1)]
+        [DisplayName("Username")]
+        [StringLength(50, ErrorMessage = "Username can be a maximum of 50 characters")]
         public string Username { get; set; }
 
         [Required(ErrorMessage = "Password is required")]
-        [StringLength(50, ErrorMessage = "Password can be a maximum of 50 characters", MinimumLength = 1)]
+        [StringLength(50, ErrorMessage = "Password can be a maximum of 50 characters")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
         [Required(ErrorMessage = "Location is required")]

@@ -30,11 +30,11 @@ namespace Data
         public void Delete(int id)
         {
 
-            var record = _db.Pizzas.Where(q => q.Id == id).FirstOrDefault();
+            var record = _db.Users.Where(q => q.Id == id).FirstOrDefault();
 
             if (record != null)
             {
-                _db.Pizzas.Remove(record);
+                _db.Users.Remove(record);
             }
         }
 

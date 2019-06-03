@@ -24,6 +24,7 @@ namespace WebApplication.Controllers
             using (Data.Entities.Context context = new Data.Entities.Context())
             {
                 var pizzas = context.Pizzas.ToList();
+
                 try
                 {
                     foreach (var pizza in pizzas)
@@ -38,14 +39,12 @@ namespace WebApplication.Controllers
                         pizzaList.Add(p);
                     }
                     
-
                 }
                 catch (Exception e)
                 {
                     Debug.WriteLine(e.Message);
                 }
 
-                
             }
 
             return View(pizzaList);

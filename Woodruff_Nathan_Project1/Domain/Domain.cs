@@ -173,6 +173,7 @@ namespace Domain
         private DateTime _time;
         private Pizza _pizza;
         private int _userid;
+        private int _pizzaid;
 
         public DateTime time
         {
@@ -209,6 +210,17 @@ namespace Domain
             }
         }
 
+        public int pizzaid
+        {
+            get
+            {
+                return _pizzaid;
+            }
+            set
+            {
+                _pizzaid = value;
+            }
+        }
     }
 
 }
