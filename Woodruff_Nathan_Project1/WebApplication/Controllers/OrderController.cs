@@ -30,26 +30,20 @@ namespace WebApplication.Controllers
         {
             using (Data.Entities.Context context = new Data.Entities.Context())
             {
-                if (TempData.ContainsKey("userId"))
+                var orders = context.Orders.Where(q => q.UsernameId == userId).ToList();
+
+                foreach (var order in orders)
                 {
-                    var orders = context.Orders.Where(q => q.UsernameId == userId).ToList();
+                    o = new Models.Orders();
+                    o.UsernameId = order.UsernameId;
+                    o.OrderTime = order.OrderTime;
+                    o.PizzaId = order.PizzaId;
 
-                    foreach (var order in orders)
-                    {
-                        o = new Models.Orders();
-                        o.UsernameId = order.UsernameId;
-                        o.OrderTime = order.OrderTime;
-                        o.PizzaId = order.PizzaId;
-
-                        orderList.Add(o);
-                    }
-
-                    return View(orderList);
+                    orderList.Add(o);
                 }
-                else
-                {
-                    return View();
-                }
+
+                return View(orderList);
+
             }
 
         }

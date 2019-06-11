@@ -3,6 +3,7 @@ using Domain;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -15,6 +16,7 @@ namespace WebApplication.Controllers
         {
             this.db = db;
         }
+
 
         public ActionResult Logout()
         {
@@ -43,7 +45,6 @@ namespace WebApplication.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(IFormCollection collection, Models.Users user)
         {
-
             using (Data.Entities.Context context = new Data.Entities.Context())
             {
                 ViewData["Message"] = "";
@@ -55,27 +56,29 @@ namespace WebApplication.Controllers
                 newUser.location = user.Location;
 
 
-                var checkUser = db.GetUserByName(user.Username);
+                var existingUser = db.GetUserByName(user.Username);
 
-                if (checkUser == null)
+                if (existingUser == null)
                 {
                     try
                     {
                         db.Add(newUser);
                         db.Save();
 
+                        //new
+                        HttpContext.Session.SetInt32("userId", (int)existingUser.id);
                         TempData["userId"] = newUser.id;
-                        return RedirectToAction("Details", "Order", TempData["userId"]);
+                        return RedirectToRoute(new { controller = "Order", action = "Details", userId = newUser.id });
                     }
                     catch
                     {
                         return View("~/Views/Shared/Error");
                     }
                 }
-                else if (checkUser.password == user.Password)
+                else if (existingUser.password == user.Password)
                 {
-                    TempData["userId"] = newUser.id;
-                    return RedirectToAction("Details", "Order", new { userId = (int)newUser.id });
+                    TempData["userId"] = existingUser.id;
+                    return RedirectToRoute(new { controller = "Order", action = "Details", userId = existingUser.id });
                 }
                 else
                 {
@@ -110,26 +113,27 @@ namespace WebApplication.Controllers
                 newUser.location = user.Location;
 
 
-                var checkUser = db.GetUserByName(user.Username);
+                var existingUser = db.GetUserByName(user.Username);
 
-                if (checkUser == null)
+                if (existingUser == null)
                 {
                     try
                     {
                         db.Add(newUser);
                         db.Save();
+
                         TempData["userId"] = newUser.id;
-                        return RedirectToAction("Details", "Order", TempData["userId"]);
+                        return RedirectToRoute(new { controller = "Order", action = "Details", userId = newUser.id });
                     }
                     catch
                     {
                         return View("~/Views/Shared/Error");
                     }
                 }
-                else if (checkUser.password == user.Password)
+                else if (existingUser.password == user.Password)
                 {
-                    TempData["userId"] = newUser.id;
-                    return RedirectToAction("Details", "Order", TempData["userId"]);
+                    TempData["userId"] = existingUser.id;
+                    return RedirectToRoute(new { controller = "Order", action = "Details", userId = existingUser.id });
                 }
                 else
                 {
