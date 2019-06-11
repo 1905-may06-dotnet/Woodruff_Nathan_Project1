@@ -9,26 +9,40 @@ trigger:
 pool:
   vmImage: 'windows-latest'
 
+#VARS
 variables:
-  solution: '**/*.sln'
-  buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  pathtosolution: 'Woodruff_Nathan_Project1/'
+  pathtoproject: 'Woodruff_Nathan_Project1/WebApplication/'
 
+#STEPS
 steps:
-- task: NuGetToolInstaller@0
-
-- task: NuGetCommand@2
+- task: SonarCloudPrepare@1
   inputs:
-    restoreSolution: '$(solution)'
+    SonarCloud: 'SonarConnection'
+    organization: 'nwoodr94-github'
+    scannerMode: 'MSBuild'
+    projectKey: 'nwoodr94_CSharp'
+    projectName: 'Web Application'
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:DesktopBuildPackageLocation="$(build.artifactStagingDirectory)\WebApp.zip" /p:DeployIisAppPath="Default Web Site"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
+#BUILD
+- script: dotnet build --configuration $(buildConfiguration)
+  workingDirectory: $(pathtosolution)
+  displayName: 'dotnet build $(buildConfiguration)'
+
+
+#ANALYZE
+- task: SonarCloudPublish@1
   inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+    pollingTimeoutSec: '300'
+- task: SonarCloudAnalyze@1
+
+#PUBLISH
+- task: DotNetCoreCLI@2
+  inputs:
+    command: publish
+    publishWebProjects: True
+    arguments: '--configuration $(BuildConfiguration) --output $(Build.ArtifactStagingDirectory)'
+    zipAfterPublish: True
+- task: PublishBuildArtifacts@1
